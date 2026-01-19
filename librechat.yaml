@@ -1,0 +1,23 @@
+version: 1.2.1
+cache: false  # ← ОТКЛЮЧИЛИ КЭШ
+
+# ... (ваш interface блок остается без изменений)
+
+version: 1.1.4
+
+endpoints:
+  custom:
+    - name: "OpenRouter"
+      apiKey: "${OPENROUTER_API_KEY}"
+      baseURL: "https://openrouter.ai/api/v1"
+      models:
+        default: 
+          - "anthropic/claude-3.5-sonnet"
+          - "openai/gpt-4o-mini"
+          - "openai/gpt-4-turbo"
+          - "black-forest-labs/flux-pro"
+          - "meta-llama/llama-3.2-405b"
+      fetch: true
+      titleConvo: true
+      modelDisplayLabel: "🚀 OpenRouter"
+      dropParams: ["stop"]
