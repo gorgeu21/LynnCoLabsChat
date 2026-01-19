@@ -1,23 +1,31 @@
-version: 1.2.1
-cache: false  # ← ОТКЛЮЧИЛИ КЭШ
-
-# ... (ваш interface блок остается без изменений)
-
-version: 1.1.4
+version: 1.2.1  # ← ТОЛЬКО ОДИН version!
+cache: false
 
 endpoints:
+  # Отключаем ВСЕ встроенные
+  openai:
+    disabled: true
+  anthropic:
+    disabled: true
+  google:
+    disabled: true
+  azure:
+    disabled: true
+  ollama:
+    disabled: true
+
   custom:
-    - name: "OpenRouter"
-      apiKey: "${OPENROUTER_API_KEY}"
+    - name: "🟢 LynnCoLabs AI"
+      apiKey: "${OPENROUTER_KEY}"  # ← ${OPENROUTER_KEY} НЕ API_KEY!
       baseURL: "https://openrouter.ai/api/v1"
+      headers:
+        x-librechat-body-parentmessageid: '{{LIBRECHAT_BODY_PARENTMESSAGEID}}'
       models:
         default: 
           - "anthropic/claude-3.5-sonnet"
           - "openai/gpt-4o-mini"
-          - "openai/gpt-4-turbo"
-          - "black-forest-labs/flux-pro"
-          - "meta-llama/llama-3.2-405b"
-      fetch: true
+        fetch: true
       titleConvo: true
-      modelDisplayLabel: "🚀 OpenRouter"
+      titleModel: "anthropic/claude-3.5-sonnet"
       dropParams: ["stop"]
+      modelDisplayLabel: "🚀 OpenRouter"
